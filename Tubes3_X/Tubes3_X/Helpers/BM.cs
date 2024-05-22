@@ -1,44 +1,66 @@
-using System.Diagnostics;
+using System;
+using System.Collections.Generic;
 
 namespace Tubes3_X
 {
     class BM
     {
-        public static int Handler(string pattern, string text)
+        private int[] BuildLastOccurrenceTable(string pattern)
         {
-            int m = pattern.Length;
+            int[] last = new int[256]; 
+            for (int i = 0; i < 256; i++)
+            {
+                last[i] = -1; 
+            }
+            for (int i = 0; i < pattern.Length; i++)
+            {
+                last[(int)pattern[i]] = i; 
+            }
+            return last;
+        }
+
+        public List<int> Search(string text, string pattern)
+        {
+            List<int> result = new List<int>();
+            int[] last = BuildLastOccurrenceTable(pattern);
             int n = text.Length;
+            int m = pattern.Length;
+            int s = 0; 
 
-            int[] badChar = new int[256];
-            Handler(pattern, m, ref badChar);
-
-            int s = 0;
             while (s <= (n - m))
             {
                 int j = m - 1;
-                
+
                 while (j >= 0 && pattern[j] == text[s + j])
-                j--;
-                
+                {
+                    j--;
+                }
+
                 if (j < 0)
                 {
-                    return s; 
+                    result.Add(s);
+                    s += (s + m < n) ? m - last[text[s + m]] : 1;
                 }
                 else
                 {
-                    s += Math.Max(1, j - badChar[(int)text[s + j]]);
+                    s += Math.Max(1, j - last[text[s + j]]);
                 }
             }
-            return -1; 
+
+            return result;
         }
 
-        private static void Handler(string str, int size, ref int[] badChar)
+        public void Handler(string source, string target)
         {
-            for (int i = 0; i < 256; i++)
-            badChar[i] = -1;
+            string[] s1 = Util.FileToChar(source);
+            string[] s2 = Util.FileToChar(target);
 
-            for (int i = 0; i < size; i++)
-            badChar[(int)str[i]] = i;
+            string text = string.Join("", s1);
+            string pattern = Util.GetPattern(s2);
+
+            List<int> matches = Search(text, pattern);
+
+            Console.WriteLine("Pattern found at positions : " + string.Join(", ", matches));
         }
     }
 }
