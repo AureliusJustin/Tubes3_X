@@ -7,7 +7,7 @@ namespace Tubes3_X
 {
     class Util
     {
-        public static string FileToChar(string filePath)
+        public static string[] FileToChar(string filePath)
         {
             Bitmap img = new Bitmap(filePath);
             // Bitmap blackAndWhite = ConvertToBlackAndWhite(img);
@@ -19,6 +19,8 @@ namespace Tubes3_X
             // blackAndWhite.Save(outputPath);
             int row = bitMap.GetLength(0);
             int col = bitMap.GetLength(1);
+
+            string[] answer = new string[row];
             
             StringBuilder charBuilder = new StringBuilder();
 
@@ -37,13 +39,26 @@ namespace Tubes3_X
                         charValue = 0; // Reset charValue for the next 8 bits
                     }
                 }
+                answer[i] = charBuilder.ToString();
+                charBuilder.Clear();
             }
             // Console.WriteLine(fileContent);
             // Console.WriteLine("AWIAIWJIAWJ");
 
-            byte[] utf8Bytes = Encoding.UTF8.GetBytes(charBuilder.ToString());
-            File.WriteAllText("../../../Test/result.txt", charBuilder.ToString());
-            return Encoding.UTF8.GetString(utf8Bytes);
+            // byte[] utf8Bytes = Encoding.UTF8.GetBytes(charBuilder.ToString());
+            // File.WriteAllText("../../../Test/result.txt", charBuilder.ToString());
+            // return Encoding.UTF8.GetString(utf8Bytes);
+            return answer;
+        }
+
+        public static string GetPattern(string[] s)
+        {
+            int row = s.GetLength(0);
+            int col = s[0].Length;
+
+            // get 30 pixel ~ 4 char
+
+            return s[row/2].Substring(col/2, 4);
         }
 
         static int[,] ConvertToBlackAndWhite(Bitmap bitmap)
