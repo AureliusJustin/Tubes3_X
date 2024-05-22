@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,15 @@ namespace Tubes3_X
         public MainWindow()
         {
             InitializeComponent();
+            Trace.WriteLine("text");
+            string folder = "../../../Test/SOCOFing/SOCOFing/Real/";
+            string fileSrc = folder + "1__M_Left_index_finger.bmp";
+            Algorithm.AlgoMain(fileSrc, "KMP");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
