@@ -7,7 +7,7 @@ namespace Tubes3_X
         public void Handler(string source, string fileTarget)
         {
             // convert image to binary
-            string s1 = Util.FileToChar(fileTarget);
+            string[] s1 = Util.FileToChar(fileTarget);
             
         }
     }

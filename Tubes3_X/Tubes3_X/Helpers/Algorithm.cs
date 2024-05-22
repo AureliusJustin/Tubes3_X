@@ -5,7 +5,7 @@ namespace Tubes3_X
         public static void AlgoMain(string fileSrc, string algo)
         {
             // create string for matching
-            string s1 = Util.FileToChar(fileSrc);
+            string[] s1 = Util.FileToChar(fileSrc);
 
             Console.WriteLine(s1);
             Console.WriteLine(s1.Length);
@@ -13,15 +13,20 @@ namespace Tubes3_X
             string folder = "../../../Test/SOCOFing/SOCOFing/Real/";
             string fileTarget = folder + "3__M_Left_index_finger.bmp";
 
+            string[] s2 = Util.FileToChar(fileTarget);
+
+            string pattern = Util.GetPattern(s1);
+
+            Console.WriteLine(pattern);
+
             // choose algo to use
-            // if(algo == "KMP"){
-            //     KMP k = new KMP();
-            //     k.Handler(s1, fileTarget);
+            if(algo == "KMP"){
+                KMP k = new KMP();
 
-            // } else if(algo == "BM"){
-            //     BM b = new BM();
+            } else if(algo == "BM"){
+                BM b = new BM();
 
-            // }
+            }
         }
     }
 }
