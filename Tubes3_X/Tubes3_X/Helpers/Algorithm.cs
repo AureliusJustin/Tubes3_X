@@ -14,14 +14,15 @@ namespace Tubes3_X
             string fileTarget = folder + "3__M_Left_index_finger.bmp";
 
             // choose algo to use
-            // if(algo == "KMP"){
-            //     KMP k = new KMP();
-            //     k.Handler(s1, fileTarget);
+            if(algo == "KMP"){
+                KMP k = new KMP();
+                k.Handler(s1, fileTarget);
 
-            // } else if(algo == "BM"){
-            //     BM b = new BM();
+            } else if(algo == "BM"){
+                BM b = new BM();
+                b.Handler(s1, fileTarget);
 
-            // }
+            }
         }
     }
 }
