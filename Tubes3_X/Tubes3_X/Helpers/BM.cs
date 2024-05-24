@@ -19,7 +19,7 @@ namespace Tubes3_X
             return last;
         }
 
-        public List<int> Search(string text, string pattern)
+        public List<int> Search(string[] text, string pattern)
         {
             List<int> result = new List<int>();
             int[] last = BuildLastOccurrenceTable(pattern);
@@ -50,13 +50,8 @@ namespace Tubes3_X
             return result;
         }
 
-        public void Handler(string source, string target)
+        public void Handler(string pattern, string[] text)
         {
-            string[] s1 = Util.FileToChar(source);
-            string[] s2 = Util.FileToChar(target);
-
-            string text = string.Join("", s1);
-            string pattern = Util.GetPattern(s2);
 
             List<int> matches = Search(text, pattern);
 

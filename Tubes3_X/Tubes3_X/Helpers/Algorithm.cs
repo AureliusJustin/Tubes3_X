@@ -25,7 +25,6 @@ namespace Tubes3_X
 
             } else if(algo == "BM"){
                 BM b = new BM();
-                b.Handler(fileSrc, fileTarget);
 
             }
         }
