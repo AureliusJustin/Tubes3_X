@@ -4,7 +4,8 @@ namespace Tubes3_X
 {   
     class KMP
     {
-        public static int[] CreateTableLPS(string pattern)
+        private int[] lps;
+        public int[] CreateTableLPS(string pattern)
         {
             int[] arr = new int[pattern.Length];
             int len = 0;
@@ -21,10 +22,9 @@ namespace Tubes3_X
             
             return arr;
         }
-        public static bool Search(string pattern, string text)
+        public bool Search(string pattern, string text)
         {
             // find prefix
-            int[] lps = CreateTableLPS(pattern);
             int m = pattern.Length;
             int n = text.Length;
 
@@ -56,16 +56,18 @@ namespace Tubes3_X
             // not found
             return false;
         }
-        public static bool Handler(string pattern, string[] text)
+        public string Handler(string pattern, string[] text)
         {
             int row = text.Length;
+            this.lps = CreateTableLPS(pattern);
+
             for(int i=0; i<row; i++){
                 if(Search(pattern, text[i])){
-                    return true;
+                    return text[i];
                 }
             }
             // not found
-            return false;
+            return "";
         }
     }
 }

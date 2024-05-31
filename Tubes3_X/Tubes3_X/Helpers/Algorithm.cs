@@ -1,32 +1,53 @@
+using System.Collections;
+using System.Data.Common;
+
 namespace Tubes3_X
 {
     class Algorithm
     {
-        public static void AlgoMain(string fileSrc, string algo)
+        private Database db;
+        public Algorithm(Database db)
         {
-            // create string for matching
+            this.db = db;
+        }
+        public string AlgoMain(string fileSrc, string algo)
+        {
+            // create PATTERN
             string[] s1 = Util.FileToChar(fileSrc);
+            string pattern = Util.GetPattern(s1);
 
             Console.WriteLine(s1);
             Console.WriteLine(s1.Length);
-
-            string folder = "../../../Test/SOCOFing/SOCOFing/Real/";
-            string fileTarget = folder + "3__M_Left_index_finger.bmp";
-
-            string[] s2 = Util.FileToChar(fileTarget);
-
-            string pattern = Util.GetPattern(s1);
-
             Console.WriteLine(pattern);
 
-            // choose algo to use
-            if(algo == "KMP"){
-                KMP k = new KMP();
 
-            } else if(algo == "BM"){
-                BM b = new BM();
+            // Setup TEXT
 
+            ArrayList listImagePath = this.db.getAllImagePath();
+
+            foreach(var img in listImagePath)
+            {
+                string fileTarget = "../../../" + img;
+                string[] s2 = Util.FileToChar(fileTarget);
+
+                // choose algo to use
+                if(algo == "KMP"){
+                    KMP k = new KMP();
+                    string result = k.Handler(pattern, s2);
+
+                    if(result != "") {
+                        Console.WriteLine("Pattern FOUND");
+                        Console.WriteLine(pattern);
+                        Console.WriteLine(result);
+                        return img.ToString();
+                    } else {
+                        Console.WriteLine("Pattern Not Found!");
+                    }
+                } else if(algo == "BM"){
+                    BM b = new BM();
+                }
             }
+            return "";
         }
     }
 }

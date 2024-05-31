@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tubes3_X"
         mc:Ignorable="d"
+		Closing="WindowExit"
         Title="MainWindow" Height="670" Width="1046">
 	<Grid>
 		<Grid.Background>
