@@ -5,10 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tubes3_X"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Label Content="Awikwok banget" HorizontalAlignment="Left" Margin="61,60,0,0" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="66,106,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        Title="MainWindow" Height="670" Width="1046">
+	<Grid>
+		<Grid.Background>
+			<ImageBrush Stretch="Fill" ImageSource="pack://application:,,,/Images/background.jpg" AlignmentY="Top" AlignmentX="Center"/>
+		</Grid.Background>
 
-    </Grid>
+
+		<Button Content="Button" HorizontalAlignment="Left" Margin="176,446,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+		<ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="341,445,0,0" VerticalAlignment="Top" Width="268" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding ContextMenu, ElementName=comboBox}" Height="49"/>
+		<TextBlock HorizontalAlignment="Left" Margin="341,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="54" Width="350" FontFamily="Arial" FontSize="24" FontWeight="Bold" TextAlignment="Center"><Run Text="DINAS DUK"/><Run Language="id-id" Text="C"/><Run Text="APIL ITEBE"/><LineBreak/><Run Text="CABANG GANESHA"/></TextBlock>
+
+	</Grid>
 </Window>
