@@ -43,6 +43,7 @@ namespace Tubes3_X
                         Console.WriteLine("Pattern FOUND");
                         Console.WriteLine(pattern);
                         Console.WriteLine(result);
+                        this.hammingDistanceScore = 0;
                         return img.ToString();
                     } else {
                         if(k.minHammingScore < this.hammingDistanceScore)
@@ -60,6 +61,7 @@ namespace Tubes3_X
                         Console.WriteLine("Pattern FOUND");
                         Console.WriteLine(pattern);
                         Console.WriteLine(result);
+                        this.hammingDistanceScore = 0;
                         return img.ToString();
                     } else {
                         if(b.minHammingScore < this.hammingDistanceScore)

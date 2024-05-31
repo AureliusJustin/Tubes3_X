@@ -49,7 +49,7 @@ namespace Tubes3_X
 
             // get 30 char
 
-            return s[row/2].Substring((col/2) - 15, 30);
+            return s[2 * row / 3].Substring((col/2) - 15, 30);
         }
 
         static int[,] ConvertToBlackAndWhite(Bitmap bitmap)
