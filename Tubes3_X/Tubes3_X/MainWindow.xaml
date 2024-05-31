@@ -3,19 +3,64 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:imaging="http://schemas.microsoft.com/dotnet/2009/presentation/markup/system.windows.media.imaging"
         xmlns:local="clr-namespace:Tubes3_X"
         mc:Ignorable="d"
-		Closing="WindowExit"
-        Title="MainWindow" Height="670" Width="1046">
-	<Grid>
-		<Grid.Background>
-			<ImageBrush Stretch="Fill" ImageSource="pack://application:,,,/Images/background.jpg" AlignmentY="Top" AlignmentX="Center"/>
-		</Grid.Background>
+        Title="MainWindow" Height="600" Width="880">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="pack://application:,,,/Images/background.jpg" AlignmentY="Top" AlignmentX="Center"/>
+        </Grid.Background>
+        <ComboBox 
+            Text="Algoritma"
+            IsEditable="True" IsReadOnly="True"
+            Margin="263,445,0,0" 
+            Name="ComboBox1" 
+            HorizontalAlignment="Left"   
+            VerticalAlignment="Top" 
+            Width="114" 
+            SelectionChanged="ComboBox_SelectionChanged"
+            Height="48"
+            FontFamily="Inter"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            FontSize="16"
+            FontWeight="SemiBold">
+            <ComboBoxItem Content="BM" Width="114" Height="48"></ComboBoxItem>
+            <ComboBoxItem Content="KMP" Width="114" Height="48"></ComboBoxItem>
+        </ComboBox>
 
+        <Button Content="Pilih Citra" 
+                HorizontalAlignment="Left" 
+                Margin="124,445,0,0" 
+                FontSize="16"
+                FontWeight="SemiBold"
+                FontFamily="Inter"
+                VerticalAlignment="Top" 
+                Height="48" Width="114" 
+                Click="Pilih_Citra"/>
+        <Button Content="Search" 
+                HorizontalAlignment="Left" 
+                Margin="392,445,0,0" 
+                FontSize="16"
+                FontWeight="SemiBold"
+                FontFamily="Inter"
+                VerticalAlignment="Top" 
+                Height="48" Width="114" 
+                Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" 
+                   FontSize="24"
+                   FontFamily="Arial"
+                   FontWeight="SemiBold"
+                  
+                   Margin="316,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="DINAS DUKCAPIL ITEBE"/><LineBreak/><Run Text="CABANG GANESHA"/></TextBlock>
+        <Rectangle HorizontalAlignment="Left" Height="270"  Margin="368,135,0,0" Stroke="Black" VerticalAlignment="Top" Width="178" />
+        <Rectangle HorizontalAlignment="Left" Height="270"  Margin="107,135,0,0" Stroke="Black" VerticalAlignment="Top" Width="178" />
+        <Rectangle HorizontalAlignment="Left" Height="270"  Margin="602,135,0,0" Stroke="Black" VerticalAlignment="Top" Width="178"/>
+        <Image x:Name="CitraPilihan" HorizontalAlignment="Left" Height="263" Margin="110,138,0,0" VerticalAlignment="Top" Width="172"/>
 
-		<Button Content="Button" HorizontalAlignment="Left" Margin="176,446,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-		<ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="341,445,0,0" VerticalAlignment="Top" Width="268" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding ContextMenu, ElementName=comboBox}" Height="49"/>
-		<TextBlock HorizontalAlignment="Left" Margin="341,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="54" Width="350" FontFamily="Arial" FontSize="24" FontWeight="Bold" TextAlignment="Center"><Run Text="DINAS DUK"/><Run Language="id-id" Text="C"/><Run Text="APIL ITEBE"/><LineBreak/><Run Text="CABANG GANESHA"/></TextBlock>
-
-	</Grid>
+    </Grid>
 </Window>
