@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Microsoft.Win32;
+using System.Collections;
 using System.Diagnostics;
 using System.Text;
 using System.Windows;
@@ -71,12 +72,35 @@ namespace Tubes3_X
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            object selectedItem = ComboBox1.SelectedItem;
 
+            if (selectedItem != null)
+            {
+                string? selectedText = selectedItem.ToString();
+
+                // Use the selected item information
+                MessageBox.Show(selectedText);
+            }
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+
+        }
+
+        private void Pilih_Citra(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new OpenFileDialog();
+            bool? response = openFileDialog.ShowDialog();
+            if (response == true)
+            {
+                string filepath = openFileDialog.FileName;
+                MessageBox.Show(filepath);
+                CitraPilihan.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+
+            }
+            Console.WriteLine("Awikwok");
         }
     }
 }
