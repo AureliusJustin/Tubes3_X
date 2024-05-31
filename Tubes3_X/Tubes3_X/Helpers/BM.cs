@@ -5,7 +5,9 @@ namespace Tubes3_X
 {
     class BM
     {
-        public static int[] BuildLast(string pattern)
+        private int[] last;
+        public int minHammingScore = 31;
+        public int[] BuildLast(string pattern)
         {
             int[] last = new int[256]; 
             for (int i = 0; i < 256; i++)
@@ -17,50 +19,61 @@ namespace Tubes3_X
             return last;
         }
 
-        public static int BMSearch(string text, string pattern)
+        public bool BMSearch(string text, string pattern)
         {
-            int n = text.Length;
-            int m = pattern.Length;
+            int n = text.Length; // text
+            int m = pattern.Length; // pattern
 
-            int[] last = BuildLast(pattern);
-
-            int i = m - 1; 
-            int j = m - 1; 
+            int i = m - 1;  // text
+            int j = m - 1;  // pattern
+            
+            if (i > n-1)
+            {
+                return false;
+            }
 
             do
             {
                 if (pattern[j] == text[i])
                 {
                     if (j == 0)
-                        return i; 
-                    else
+                        return true; 
+                    else // looking glass 
                     {
                         i--;
                         j--;
                     }
                 }
-                else
+                else // character jump
                 {
+                    int tempScore = HammingDistance.Calculate(pattern.Substring(0, j+1), text.Substring(i-j, j+1));
+                    if(tempScore < this.minHammingScore)
+                    {
+                        this.minHammingScore = tempScore;
+                    }
                     int lo = last[text[i]]; 
                     i = i + m - Math.Min(j, 1 + lo);
                     j = m - 1;
                 }
             } while (i <= n - 1);
 
-            return -1; 
+            return false; 
         }
 
-        public static bool Handler(string pattern, string[] text)
+        public string Handler(string pattern, string[] text)
         {
             int row = text.Length;
+            this.last = BuildLast(pattern);
+            
             for (int i = 0; i < row; i++)
             {
-                if (BMSearch(text[i], pattern) != -1)
+                if (BMSearch(text[i], pattern))
                 {
-                    return true; 
+                    this.minHammingScore = 0;
+                    return text[i]; 
                 }
             }
-            return false; 
+            return ""; 
         }
     }
 }

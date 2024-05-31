@@ -5,7 +5,7 @@ namespace Tubes3_X
     class KMP
     {
         private int[] lps;
-        public int minHammingScore = 30;
+        public int minHammingScore = 31;
         public int[] CreateTableLPS(string pattern)
         {
             int[] arr = new int[pattern.Length];
@@ -46,7 +46,7 @@ namespace Tubes3_X
                 }
                 // mis match
                 else if(i < n && pattern[j] != text[i]){
-                    int h = HammingDistance.HammingDistance(pattern.Substring(j, m-j), text.Substring(i, m-j));
+                    int h = HammingDistance.Calculate(pattern.Substring(j, m-j), text.Substring(i, m-j));
                     if (h < this.minHammingScore)
                     {
                         this.minHammingScore = h;
@@ -69,6 +69,7 @@ namespace Tubes3_X
 
             for(int i=0; i<row; i++){
                 if(Search(pattern, text[i])){
+                    this.minHammingScore = 0;
                     return text[i];
                 }
             }

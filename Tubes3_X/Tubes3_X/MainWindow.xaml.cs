@@ -51,7 +51,8 @@ namespace Tubes3_X
         {
             // search button clicked
             this.inputFilePath = folder + "250__F_Right_ring_finger.BMP";
-            string result = this.algo.AlgoMain(inputFilePath, "KMP");
+            // this.inputFilePath = "../../../Test/SOCOFing/Altered/Altered-Medium/" + "2__F_Left_index_finger_Obl.BMP";
+            string result = this.algo.AlgoMain(inputFilePath, "BM");
 
             if(result != ""){
                 string personName = db.getNameFromImagePath(result);

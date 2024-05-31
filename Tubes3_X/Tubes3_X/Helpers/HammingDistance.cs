@@ -2,7 +2,7 @@ namespace Tubes3_X
 {
     class HammingDistance
     {
-        public static int HammingDistance(string s1, string s2)
+        public static int Calculate(string s1, string s2)
         {
             // Cek apakah panjang string sama.
             if (s1.Length != s2.Length)
