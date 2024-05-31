@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace Tubes3_X
 {
@@ -17,27 +19,54 @@ namespace Tubes3_X
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Database db = null;
+        private string folder = "../../../Test/SOCOFing/Real/";
+        private string inputFilePath = "";
+        private Algorithm algo;
         public MainWindow()
         {
             try {
+                // initialize UI
                 InitializeComponent();
+
+                // initialize Database
+                this.db = new Database();
+                db.init();
+
+                // initialize algorithm
+                this.algo = new Algorithm(this.db);
+
             } catch (Exception e) {
                 Console.WriteLine(e);
             }
-            Trace.WriteLine("text");
-            string folder = "../../../Test/SOCOFing/SOCOFing/Real/";
-            string fileSrc = folder + "1__M_Left_index_finger.bmp";
-            Algorithm.AlgoMain(fileSrc, "KMP");
+        }
 
-            Database db = new Database();
-            db.init();
-            db.getAllName();
-            db.closeConnection();
+        public void WindowExit(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Console.WriteLine("Exited program");
+            this.db.closeConnection();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // Massage.
+            // search button clicked
+            this.inputFilePath = folder + "250__F_Right_ring_finger.BMP";
+            string result = this.algo.AlgoMain(inputFilePath, "KMP");
+
+            if(result != ""){
+                string personName = db.getNameFromImagePath(result);
+                string regexPattern = RegexCustom.ConvertStringToRegexPattern(personName);
+
+                ArrayList listNamaAlay = db.getAllAlayName();
+
+                foreach (string namaAlay in listNamaAlay)
+                {
+                    if (Regex.IsMatch(namaAlay, regexPattern)) {
+                        Biodata baru = db.getBiodataFromName(namaAlay);
+                        break;
+                    }
+                }
+            }
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)

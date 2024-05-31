@@ -20,34 +20,25 @@ namespace Tubes3_X
             int row = bitMap.GetLength(0);
             int col = bitMap.GetLength(1);
 
-            string[] answer = new string[row];
+            string[] answer = new string[row-7];
             
             StringBuilder charBuilder = new StringBuilder();
 
-            for(int i=0; i<row; i++){
-                int charValue = 0;
+            for(int i=0; i<row-7; i++){
+                
                 for (int j = 0; j < col; j++)
                 {
-                    charValue = (charValue << 1) | bitMap[i, j]; // Shift and add the binary value
-                    if ((j + 1) % 8 == 0) // If we have 8 bits, convert to character
+                    int charValue = 0;
+                    for(int k=0; k<8; k++)
                     {
-                        if(charValue > 255)
-                        {
-                            Console.WriteLine(charValue);
-                        }
-                        charBuilder.Append(Convert.ToChar(charValue));
-                        charValue = 0; // Reset charValue for the next 8 bits
+                        charValue = (charValue << 1) | bitMap[i+k, j]; // Shift and add the binary value
                     }
+                    charBuilder.Append(Convert.ToChar(charValue));
+                    charValue = 0; // Reset charValue for the next 8 bits
                 }
                 answer[i] = charBuilder.ToString();
                 charBuilder.Clear();
             }
-            // Console.WriteLine(fileContent);
-            // Console.WriteLine("AWIAIWJIAWJ");
-
-            // byte[] utf8Bytes = Encoding.UTF8.GetBytes(charBuilder.ToString());
-            // File.WriteAllText("../../../Test/result.txt", charBuilder.ToString());
-            // return Encoding.UTF8.GetString(utf8Bytes);
             return answer;
         }
 
@@ -56,9 +47,9 @@ namespace Tubes3_X
             int row = s.GetLength(0);
             int col = s[0].Length;
 
-            // get 30 pixel ~ 4 char
+            // get 30 char
 
-            return s[row/2].Substring(col/2, 4);
+            return s[row/2].Substring((col/2) - 15, 30);
         }
 
         static int[,] ConvertToBlackAndWhite(Bitmap bitmap)
