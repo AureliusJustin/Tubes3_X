@@ -45,6 +45,7 @@ namespace Tubes3_X
                 }
                 // mis match
                 else if(i < n && pattern[j] != text[i]){
+                    
                     if (j != 0){
                         j = lps[j -1];
                     } else {
