@@ -40,6 +40,8 @@ namespace Tubes3_X
                         Console.WriteLine(pattern);
                         Console.WriteLine(result);
                         return img.ToString();
+                    } else {
+                        Console.WriteLine("Pattern Not Found!");
                     }
                 } else if(algo == "BM"){
                     BM b = new BM();

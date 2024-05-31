@@ -5,6 +5,7 @@ namespace Tubes3_X
     class KMP
     {
         private int[] lps;
+        public int minHammingScore = 30;
         public int[] CreateTableLPS(string pattern)
         {
             int[] arr = new int[pattern.Length];
@@ -45,7 +46,11 @@ namespace Tubes3_X
                 }
                 // mis match
                 else if(i < n && pattern[j] != text[i]){
-                    
+                    int h = HammingDistance.HammingDistance(pattern.Substring(j, m-j), text.Substring(i, m-j));
+                    if (h < this.minHammingScore)
+                    {
+                        this.minHammingScore = h;
+                    }
                     if (j != 0){
                         j = lps[j -1];
                     } else {
