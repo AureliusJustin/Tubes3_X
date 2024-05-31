@@ -8,7 +8,7 @@
         Title="MainWindow" Height="670" Width="1046">
 	<Grid>
 		<Grid.Background>
-			<ImageBrush Stretch="Fill" ImageSource="C:\Users\ACER\source\repos\Tubes3_X\Tubes3_X\Images\background.jpg" AlignmentY="Top" AlignmentX="Center"/>
+			<ImageBrush Stretch="Fill" ImageSource="pack://application:,,,/Images/background.jpg" AlignmentY="Top" AlignmentX="Center"/>
 		</Grid.Background>
 
 

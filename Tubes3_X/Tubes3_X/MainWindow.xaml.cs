@@ -19,7 +19,11 @@ namespace Tubes3_X
     {
         public MainWindow()
         {
-            InitializeComponent();
+            try {
+                InitializeComponent();
+            } catch (Exception e) {
+                Console.WriteLine(e);
+            }
             Trace.WriteLine("text");
             string folder = "../../../Test/SOCOFing/SOCOFing/Real/";
             string fileSrc = folder + "1__M_Left_index_finger.bmp";
