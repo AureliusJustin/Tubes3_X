@@ -21,32 +21,36 @@ namespace Tubes3_X
 
         public List<int> Search(string[] text, string pattern)
         {
+            
             List<int> result = new List<int>();
             int[] last = BuildLastOccurrenceTable(pattern);
-            int n = text.Length;
-            int m = pattern.Length;
-            int s = 0; 
 
-            while (s <= (n - m))
+            for(int i=0; i<text.Length; i++)
             {
-                int j = m - 1;
+                int n = text.Length;
+                int m = pattern.Length;
+                int s = 0;
 
-                while (j >= 0 && pattern[j] == text[s + j])
+                while (s <= (n - m))
                 {
-                    j--;
-                }
+                    int j = m - 1;
 
-                if (j < 0)
-                {
-                    result.Add(s);
-                    s += (s + m < n) ? m - last[text[s + m]] : 1;
-                }
-                else
-                {
-                    s += Math.Max(1, j - last[text[s + j]]);
+                    while (j >= 0 && pattern[j] == text[i][s + j])
+                    {
+                        j--;
+                    }
+
+                    if (j < 0)
+                    {
+                        result.Add(s);
+                        s += (s + m < n) ? m - last[text[i][s + m]] : 1;
+                    }
+                    else
+                    {
+                        s += Math.Max(1, j - last[text[i][s + j]]);
+                    }
                 }
             }
-
             return result;
         }
 

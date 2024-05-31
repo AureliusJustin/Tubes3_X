@@ -24,6 +24,11 @@ namespace Tubes3_X
             string folder = "../../../Test/SOCOFing/SOCOFing/Real/";
             string fileSrc = folder + "1__M_Left_index_finger.bmp";
             Algorithm.AlgoMain(fileSrc, "KMP");
+
+            Database db = new Database();
+            db.init();
+            db.getAllName();
+            db.closeConnection();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
