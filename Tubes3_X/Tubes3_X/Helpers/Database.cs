@@ -41,6 +41,7 @@ namespace Tubes3_X
 
             while(reader.Read()){
                 string temp = reader.GetString(0);
+                temp = AesEncryption.Decrypt(temp);
                 listNama.Add(temp);
             }
 
@@ -53,13 +54,14 @@ namespace Tubes3_X
         {
             ArrayList listNama = new ArrayList();
 
-            string sql = "SELECT nama FROM sidik_jari WHERE berkas_citra = \"" + imagePath + "\"";
+            string sql = "SELECT nama FROM sidik_jari WHERE berkas_citra = \"" + AesEncryption.Encrypt(imagePath) + "\"";
             MySqlCommand cmd = new MySqlCommand(sql, this.conn);
             MySqlDataReader reader = cmd.ExecuteReader();
 
             reader.Read();
 
             string temp = reader.GetString(0);
+            temp = AesEncryption.Decrypt(temp);
 
             reader.Close();
 
@@ -76,6 +78,7 @@ namespace Tubes3_X
 
             while(reader.Read()){
                 string temp = reader.GetString(0);
+                temp = AesEncryption.Decrypt(temp);
                 listImagePath.Add(temp);
             }
 
@@ -86,7 +89,7 @@ namespace Tubes3_X
 
         public Biodata getBiodataFromName(string name)
         {
-            string sql = "SELECT * FROM biodata WHERE nama = \"" + name + "\"";
+            string sql = "SELECT * FROM biodata WHERE nama = \"" + AesEncryption.Encrypt(name) + "\"";
             
             MySqlCommand cmd = new MySqlCommand(sql, this.conn);
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -94,16 +97,26 @@ namespace Tubes3_X
             reader.Read();
             
             string nik = reader["NIK"].ToString();
+            nik = AesEncryption.Decrypt(nik);
             string nama = reader["nama"].ToString();
+            nama = AesEncryption.Decrypt(nama);
             string tempatLahir = reader["tempat_lahir"].ToString();
+            tempatLahir = AesEncryption.Decrypt(tempatLahir);
             string tanggalLahir = reader["tanggal_lahir"].ToString();
+            tanggalLahir = AesEncryption.Decrypt(tanggalLahir);
             string jenisKelamin = reader["jenis_kelamin"].ToString();
             string golDar = reader["golongan_darah"].ToString();
+            golDar = AesEncryption.Decrypt(golDar);
             string alamat = reader["alamat"].ToString();
+            alamat = AesEncryption.Decrypt(alamat);
             string agama = reader["agama"].ToString();
+            agama = AesEncryption.Decrypt(agama);
             string statusKawin = reader["status_perkawinan"].ToString();
+            statusKawin = AesEncryption.Decrypt(statusKawin);
             string pekerjaan = reader["pekerjaan"].ToString();
+            pekerjaan = AesEncryption.Decrypt(pekerjaan);
             string kewarganegaraan = reader["kewarganegaraan"].ToString();
+            kewarganegaraan = AesEncryption.Decrypt(kewarganegaraan);
 
             reader.Close();
 
