@@ -31,6 +31,10 @@ namespace Database
         }
         public static void Main(string[] args)
         {
+            byte[] key = Encoding.ASCII.GetBytes("2 chinese 2 java");
+            byte[] iv = Encoding.ASCII.GetBytes("asisten irk ****");
+
+            AesTailored a = new AesTailored(key, iv);
             string inputFilePath = "../../../database/tubes3_stima24.sql";  // Path to your input SQL file
             string outputFilePath = "../../../database_output/output_encrypted.sql";  // Path to the output SQL file
 
@@ -53,10 +57,13 @@ namespace Database
 
                 for (int i = 0; i < valueArray.Length; i++)
                 {
-                    if(valueArray[i] != "'Perempuan'" && valueArray[i] != "'Laki-Laki'")
-                    {
-                        valueArray[i] = "'" + AesEncryption.Encrypt(valueArray[i].Trim('\'')) + "'";
-                    }
+                    // if(valueArray[i] != "'Perempuan'" && valueArray[i] != "'Laki-Laki'")
+                    // {
+                        // valueArray[i] = "'" + AesEncryption.Encrypt(valueArray[i].Trim('\'')) + "'";
+                    byte[] result = a.Encrypt(Encoding.ASCII.GetBytes(valueArray[i].Trim('\'')));
+                    string val = System.Convert.ToBase64String(result);
+                    valueArray[i] = "'" + val + "'";
+                    // }
                 }
 
                 // Create new INSERT INTO statement with encrypted values
@@ -80,6 +87,7 @@ namespace Database
             fileContent = fileContent.Replace("`tanggal_lahir` date DEFAULT NULL,", "`tanggal_lahir` varchar(50) DEFAULT NULL,");
             fileContent = fileContent.Replace("`golongan_darah` varchar(5) DEFAULT NULL,", "`golongan_darah` varchar(30) DEFAULT NULL,");
             fileContent = fileContent.Replace("`status_perkawinan` enum('Belum Menikah','Menikah','Cerai') DEFAULT NULL,", "`status_perkawinan` varchar(32) DEFAULT NULL,");
+            fileContent = fileContent.Replace("`jenis_kelamin` enum('Laki-Laki','Perempuan') DEFAULT NULL,", "`jenis_kelamin` varchar(30) DEFAULT NULL,");
 
             // Write the modified content to the new SQL file
             File.WriteAllText(outputFilePath, fileContent);

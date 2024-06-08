@@ -1,14 +1,21 @@
 using System;
 using System.Collections;
+using System.Runtime.Intrinsics.Arm;
 using MySqlConnector;
+using System.Text;
 
 namespace Tubes3_X
 {
     class Database
     {
+        private AesEncryption a;
         private MySqlConnection conn;
         public Database()
         {
+            byte[] key = Encoding.ASCII.GetBytes("2 chinese 2 java");
+            byte[] iv = Encoding.ASCII.GetBytes("asisten irk ****");
+            this.a = new AesEncryption(key, iv);
+
             this.conn = new MySqlConnection();
             conn.ConnectionString = ("Server=localhost;port=1234;user id=root; password=pass; database=userdata");
         }
@@ -41,7 +48,7 @@ namespace Tubes3_X
 
             while(reader.Read()){
                 string temp = reader.GetString(0);
-                temp = AesEncryption.Decrypt(temp);
+                temp = a.DecryptString(System.Convert.FromBase64String(temp));
                 listNama.Add(temp);
             }
 
@@ -54,14 +61,16 @@ namespace Tubes3_X
         {
             ArrayList listNama = new ArrayList();
 
-            string sql = "SELECT nama FROM sidik_jari WHERE berkas_citra = \"" + AesEncryption.Encrypt(imagePath) + "\"";
+            string sql = "SELECT nama FROM sidik_jari WHERE berkas_citra = \"" + System.Convert.ToBase64String(a.Encrypt(Encoding.ASCII.GetBytes(imagePath))) + "\"";
             MySqlCommand cmd = new MySqlCommand(sql, this.conn);
             MySqlDataReader reader = cmd.ExecuteReader();
 
-            reader.Read();
+            string temp = "";
+            while(reader.Read()){
+                temp = reader.GetString(0);
+                temp = a.DecryptString(System.Convert.FromBase64String(temp));
+            }
 
-            string temp = reader.GetString(0);
-            temp = AesEncryption.Decrypt(temp);
 
             reader.Close();
 
@@ -78,7 +87,7 @@ namespace Tubes3_X
 
             while(reader.Read()){
                 string temp = reader.GetString(0);
-                temp = AesEncryption.Decrypt(temp);
+                temp = a.DecryptString(System.Convert.FromBase64String(temp));
                 listImagePath.Add(temp);
             }
 
@@ -89,7 +98,7 @@ namespace Tubes3_X
 
         public Biodata getBiodataFromName(string name)
         {
-            string sql = "SELECT * FROM biodata WHERE nama = \"" + AesEncryption.Encrypt(name) + "\"";
+            string sql = "SELECT * FROM biodata WHERE nama = \"" + System.Convert.ToBase64String(a.Encrypt(Encoding.ASCII.GetBytes(name))) + "\"";
             
             MySqlCommand cmd = new MySqlCommand(sql, this.conn);
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -97,26 +106,37 @@ namespace Tubes3_X
             reader.Read();
             
             string nik = reader["NIK"].ToString();
-            nik = AesEncryption.Decrypt(nik);
+            nik = a.DecryptString(System.Convert.FromBase64String(nik));
+
             string nama = reader["nama"].ToString();
-            nama = AesEncryption.Decrypt(nama);
+            nama = a.DecryptString(System.Convert.FromBase64String(nama));
+
             string tempatLahir = reader["tempat_lahir"].ToString();
-            tempatLahir = AesEncryption.Decrypt(tempatLahir);
+            tempatLahir = a.DecryptString(System.Convert.FromBase64String(tempatLahir));
+
             string tanggalLahir = reader["tanggal_lahir"].ToString();
-            tanggalLahir = AesEncryption.Decrypt(tanggalLahir);
+            tanggalLahir = a.DecryptString(System.Convert.FromBase64String(tanggalLahir));
+
             string jenisKelamin = reader["jenis_kelamin"].ToString();
+            jenisKelamin = a.DecryptString(System.Convert.FromBase64String(jenisKelamin));
+
             string golDar = reader["golongan_darah"].ToString();
-            golDar = AesEncryption.Decrypt(golDar);
+            golDar = a.DecryptString(System.Convert.FromBase64String(golDar));
+
             string alamat = reader["alamat"].ToString();
-            alamat = AesEncryption.Decrypt(alamat);
+            alamat = a.DecryptString(System.Convert.FromBase64String(alamat));
+            
             string agama = reader["agama"].ToString();
-            agama = AesEncryption.Decrypt(agama);
+            agama = a.DecryptString(System.Convert.FromBase64String(agama));
+
             string statusKawin = reader["status_perkawinan"].ToString();
-            statusKawin = AesEncryption.Decrypt(statusKawin);
+            statusKawin = a.DecryptString(System.Convert.FromBase64String(statusKawin));
+
             string pekerjaan = reader["pekerjaan"].ToString();
-            pekerjaan = AesEncryption.Decrypt(pekerjaan);
+            pekerjaan = a.DecryptString(System.Convert.FromBase64String(pekerjaan));
+
             string kewarganegaraan = reader["kewarganegaraan"].ToString();
-            kewarganegaraan = AesEncryption.Decrypt(kewarganegaraan);
+            kewarganegaraan = a.DecryptString(System.Convert.FromBase64String(kewarganegaraan));
 
             reader.Close();
 

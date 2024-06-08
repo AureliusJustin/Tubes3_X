@@ -139,15 +139,15 @@ namespace Tubes3_X
                 string workingDirectory = Environment.CurrentDirectory;
                 string projectDirectory  = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
 
-                if (persen >= 50)
+                if (persen/ 30.0 * 100.0 >= 50)
                 {
                 CitraHasil.Source = new BitmapImage(new Uri(projectDirectory + "/" + result));
                 }
                 else
                 {
-                CitraHasil.Source = new BitmapImage(new Uri(projectDirectory + "/notfound.jpg"));
+                CitraHasil.Source = new BitmapImage(new Uri(projectDirectory + "/Images/notfound.jpg"));
                 }
-                lkecocokan.Content = persen.ToString() + "%";
+                lkecocokan.Content = (persen/ 30.0 * 100.0).ToString() + "%";
             }
             lwaktu.Content = elapsedMs.ToString() + "Ms";
         }
