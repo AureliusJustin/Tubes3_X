@@ -4,9 +4,9 @@ namespace Tubes3_X
 {   
     class KMP
     {
-        private int[] lps;
+        private int[] Boundary;
         public int minHammingScore = 31;
-        public int[] CreateTableLPS(string pattern)
+        public int[] CreateTableBoundary(string pattern)
         {
             int[] arr = new int[pattern.Length];
             int len = 0;
@@ -41,7 +41,7 @@ namespace Tubes3_X
 
                 if(j == m){
                     // FOUND
-                    j = lps[j - 1];
+                    j = Boundary[j - 1];
                     return true;
                 }
                 // mis match
@@ -52,7 +52,7 @@ namespace Tubes3_X
                         this.minHammingScore = h;
                     }
                     if (j != 0){
-                        j = lps[j -1];
+                        j = Boundary[j -1];
                     } else {
                         i++;
                     }
@@ -65,7 +65,7 @@ namespace Tubes3_X
         public string Handler(string pattern, string[] text)
         {
             int row = text.Length;
-            this.lps = CreateTableLPS(pattern);
+            this.Boundary = CreateTableBoundary(pattern);
 
             for(int i=0; i<row; i++){
                 if(Search(pattern, text[i])){
