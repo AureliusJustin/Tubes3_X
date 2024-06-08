@@ -76,6 +76,8 @@ namespace Tubes3_X
             Label lstatus = (Label)Status;
             Label lpekerjaan = (Label)Pekerjaan;
             Label lkewarganegaraan = (Label)Kewarganegaraan;
+            Label lwaktu = (Label)Waktu;
+            Label lkecocokan = (Label)Kecocokan;
 
             lnama.Content = "";
             ltempatlahir.Content = "";
@@ -87,8 +89,17 @@ namespace Tubes3_X
             lstatus.Content = "";
             lpekerjaan.Content = "";
             lkewarganegaraan.Content = "";
+            lwaktu.Content = "";
+            lkecocokan.Content = "";
+
+            //Memulai Stopwatch
+            var watch = System.Diagnostics.Stopwatch.StartNew();
 
             string result = this.algo.AlgoMain(this.inputFilePath, "BM");
+
+            //Mengakhiri Stopwatch
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
 
             if(result != ""){
                 string personName = db.getNameFromImagePath(result);
@@ -118,27 +129,27 @@ namespace Tubes3_X
                 lpekerjaan.Content = baru.pekerjaan;
                 lkewarganegaraan.Content = baru.kewarganegaraan;
 
-
-
-
-
-
-
-
-                /*      Label Kw = new Label();
-                      Kw = (Label)this.FindControl("Kewarganegaraan" + i.ToString()) as Label;
-                      Kw.Text = "wkwk";*/
-
                 Console.WriteLine(baru.nama);
                 Console.WriteLine(baru.nik);
-                
+
                 // CARA NAMPILIN PERSENTASE
-                Console.WriteLine("Akurasi: " + (((float)(30 - this.algo.hammingDistanceScore)) / 30.0 * 100.0) + "%"); 
+                float persen = ((float)(30 - this.algo.hammingDistanceScore));
+                Console.WriteLine("Akurasi: " + (persen/ 30.0 * 100.0) + "%"); 
                 Console.WriteLine("Hamming Distance: " + this.algo.hammingDistanceScore);
                 string workingDirectory = Environment.CurrentDirectory;
                 string projectDirectory  = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+
+                if (persen >= 50)
+                {
                 CitraHasil.Source = new BitmapImage(new Uri(projectDirectory + "/" + result));
+                }
+                else
+                {
+                CitraHasil.Source = new BitmapImage(new Uri(projectDirectory + "/notfound.jpg"));
+                }
+                lkecocokan.Content = persen.ToString() + "%";
             }
+            lwaktu.Content = elapsedMs.ToString() + "Ms";
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

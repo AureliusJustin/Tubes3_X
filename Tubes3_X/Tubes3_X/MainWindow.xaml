@@ -110,6 +110,10 @@
         <Label Name="Status" Content="" HorizontalAlignment="Left" Margin="685,322,0,0" VerticalAlignment="Top" Width="117"/>
         <Label Name="Pekerjaan" Content="" HorizontalAlignment="Left" Margin="640,348,0,0" VerticalAlignment="Top" Width="160"/>
         <Label Name="Kewarganegaraan" Content="" HorizontalAlignment="Left" Margin="684,374,0,0" VerticalAlignment="Top" Width="115"/>
+        <Label Content="Waktu Pencarian:" FontWeight="Medium" HorizontalAlignment="Left" Margin="529,445,0,0" VerticalAlignment="Top" Width="105"/>
+        <Label x:Name="Waktu" Content="" HorizontalAlignment="Left" Margin="631,445,0,0" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Persentase Kecocokan:" FontWeight="Medium" HorizontalAlignment="Left" Margin="530,468,0,0" VerticalAlignment="Top" Width="136"/>
+        <Label x:Name="Kecocokan" Content="" HorizontalAlignment="Left" Margin="662,468,0,0" VerticalAlignment="Top" Width="144"/>
 
 
     </Grid>
