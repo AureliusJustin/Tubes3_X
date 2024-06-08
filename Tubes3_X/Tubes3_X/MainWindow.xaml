@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:Tubes3_X"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="880">
+
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -17,7 +18,8 @@
         <ComboBox 
             Text="Algoritma"
             IsEditable="True" IsReadOnly="True"
-            Margin="263,445,0,0" 
+            BorderThickness="0"
+            Margin="258,445,0,0" 
             Name="ComboBox1" 
             HorizontalAlignment="Left"   
             VerticalAlignment="Top" 
@@ -28,12 +30,14 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             FontSize="16"
+            
             FontWeight="SemiBold">
             <ComboBoxItem Content="BM" Width="114" Height="48"></ComboBoxItem>
             <ComboBoxItem Content="KMP" Width="114" Height="48"></ComboBoxItem>
         </ComboBox>
 
-        <Button Content="Pilih Citra" 
+        <Button Name="pilihcitra"
+                Content="Pilih Citra" 
                 HorizontalAlignment="Left" 
                 Margin="124,445,0,0" 
                 FontSize="16"
@@ -41,8 +45,18 @@
                 FontFamily="Inter"
                 VerticalAlignment="Top" 
                 Height="48" Width="114" 
-                Click="Pilih_Citra"/>
-        <Button Content="Search" 
+                Background="#81BFE5"
+                BorderThickness="0"
+                Click="Pilih_Citra">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="7"/>
+
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Name ="search"
+                Content="Search" 
                 HorizontalAlignment="Left" 
                 Margin="392,445,0,0" 
                 FontSize="16"
@@ -50,7 +64,17 @@
                 FontFamily="Inter"
                 VerticalAlignment="Top" 
                 Height="48" Width="114" 
-                Click="Button_Click"/>
+                Background="#81BFE5"
+                BorderThickness="0"
+                Click="Button_Click">
+
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="7"/>
+
+                </Style>
+            </Button.Resources>
+        </Button>
         <TextBlock HorizontalAlignment="Left" 
                    FontSize="24"
                    FontFamily="Arial"
@@ -61,11 +85,32 @@
                    <LineBreak/>
                    <Run Text="CABANG GANESHA"/>
         </TextBlock>
-        <Rectangle HorizontalAlignment="Left" Height="270"  Margin="368,135,0,0" Stroke="Black" VerticalAlignment="Top" Width="178" />
+        <Rectangle HorizontalAlignment="Left" Height="270"  Margin="341,135,0,0" Stroke="Black" VerticalAlignment="Top" Width="178" />
         <Rectangle HorizontalAlignment="Left" Height="270"  Margin="107,135,0,0" Stroke="Black" VerticalAlignment="Top" Width="178" />
-        <Rectangle HorizontalAlignment="Left" Height="270"  Margin="602,135,0,0" Stroke="Black" VerticalAlignment="Top" Width="178"/>
+        <Rectangle HorizontalAlignment="Left" Height="270"  Margin="571,135,0,0" Stroke="Black" VerticalAlignment="Top" Width="245"/>
         <Image x:Name="CitraPilihan" HorizontalAlignment="Left" Height="263" Margin="110,138,0,0" VerticalAlignment="Top" Width="172"/>
-        <Image x:Name="CitraHasil" HorizontalAlignment="Left" Height="263" Margin="330,138,0,0" VerticalAlignment="Top" Width="172"/>
+        <Image x:Name="CitraHasil" HorizontalAlignment="Left" Height="263" Margin="345,138,0,0" VerticalAlignment="Top" Width="172"/>
+        <Label Content="Nama:" HorizontalAlignment="Left" Margin="580,140,0,0" VerticalAlignment="Top" Width="62"/>
+        <Label Content="Tempat Lahir:" HorizontalAlignment="Left" Margin="580,166,0,0" VerticalAlignment="Top" Width="81"/>
+        <Label Content="Tanggal Lahir:" HorizontalAlignment="Left" Margin="580,192,0,0" VerticalAlignment="Top" Width="86"/>
+        <Label Content="Kelamin:" HorizontalAlignment="Left" Margin="580,218,0,0" VerticalAlignment="Top" Width="54"/>
+        <Label Content="Goldar:" HorizontalAlignment="Left" Margin="580,244,0,0" VerticalAlignment="Top" Width="54"/>
+        <Label Content="Alamat:" HorizontalAlignment="Left" Margin="580,269,0,0" VerticalAlignment="Top" Width="54"/>
+        <Label Content="Agama:" HorizontalAlignment="Left" Margin="580,296,0,0" VerticalAlignment="Top" Width="54"/>
+        <Label Content="Status perkawinan:" HorizontalAlignment="Left" Margin="580,322,0,0" VerticalAlignment="Top" Width="112"/>
+        <Label Content="Pekerjaan:" HorizontalAlignment="Left" Margin="580,348,0,0" VerticalAlignment="Top" Width="67"/>
+        <Label Content="Kewarganegaraan:" HorizontalAlignment="Left" Margin="580,374,0,0" VerticalAlignment="Top" Width="107"/>
+        <Label Name="Nama" Content="" HorizontalAlignment="Left" Margin="621,140,0,0" VerticalAlignment="Top" Width="144"/>
+        <Label Name="TempatLahir" Content="" HorizontalAlignment="Left" Margin="657,166,0,0" VerticalAlignment="Top" Width="145"/>
+        <Label Name="TanggalLahir" Content="" HorizontalAlignment="Left" Margin="660,192,0,0" VerticalAlignment="Top" Width="145"/>
+        <Label Name="Kelamin" Content="" HorizontalAlignment="Left" Margin="631,218,0,0" VerticalAlignment="Top" Width="145"/>
+        <Label Name="Goldar" Content="" HorizontalAlignment="Left" Margin="625,244,0,0" VerticalAlignment="Top" Width="145"/>
+        <Label Name="Alamat" Content="" HorizontalAlignment="Left" Margin="626,270,0,0" VerticalAlignment="Top" Width="145"/>
+        <Label Name="Agama" Content="" HorizontalAlignment="Left" Margin="626,296,0,0" VerticalAlignment="Top" Width="145"/>
+        <Label Name="Status" Content="" HorizontalAlignment="Left" Margin="685,322,0,0" VerticalAlignment="Top" Width="117"/>
+        <Label Name="Pekerjaan" Content="" HorizontalAlignment="Left" Margin="640,348,0,0" VerticalAlignment="Top" Width="160"/>
+        <Label Name="Kewarganegaraan" Content="" HorizontalAlignment="Left" Margin="684,374,0,0" VerticalAlignment="Top" Width="115"/>
+
 
     </Grid>
 </Window>
