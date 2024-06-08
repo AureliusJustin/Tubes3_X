@@ -11,6 +11,24 @@ namespace Database
 
     public class DatabaseSetup
     {
+        public static void Testing(string[] args)
+        {
+            string key = "abcdefghijklmnop";
+            string iv = "abcdefghijklmnop";
+            string message = "ini pesan dari edbert UWAWA :D";
+            AesTailored a = new AesTailored(Encoding.ASCII.GetBytes(key), Encoding.ASCII.GetBytes(iv));
+            byte[] result = a.Encrypt(Encoding.ASCII.GetBytes(message));
+            string cipher = System.Convert.ToBase64String(result);
+            Console.WriteLine(cipher);
+            byte[] citext = System.Convert.FromBase64String(cipher);
+            string resultD = a.DecryptString(citext);
+            Console.WriteLine(resultD);
+
+            string result2 = AesEncryption.Encrypt(message);
+            Console.WriteLine(result2);
+            string res2 = AesEncryption.Decrypt(result2);
+            Console.WriteLine(res2);
+        }
         public static void Main(string[] args)
         {
             string inputFilePath = "../../../database/tubes3_stima24.sql";  // Path to your input SQL file

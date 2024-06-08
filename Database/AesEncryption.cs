@@ -5,8 +5,8 @@ namespace Database
 {
     public class AesEncryption
     {
-        private static readonly byte[] Key = Encoding.UTF8.GetBytes("your-32-char-long-key-here-awikw");
-        private static readonly byte[] IV = Encoding.UTF8.GetBytes("your-16-char-lon");
+        private static readonly byte[] Key = Encoding.UTF8.GetBytes("abcdefghijklmnopabcdefghijklmnop");
+        private static readonly byte[] IV = Encoding.UTF8.GetBytes("abcdefghijklmnop");
 
         public static string Encrypt(string plainText)
         {
