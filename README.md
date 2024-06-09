@@ -39,5 +39,5 @@ Terdapat beberapa fitur yang dapat digunakan pada project ini, antara lain:
 
 Aurelius Justin Philo Fanjaya - 13522020@std.stei.itb.ac.id <br>
 Dhidit Abdi Aziz - 13522040@std.stei.itb.ac.id <br>
-Edbert Edyson Gunawan - 13522083@std.stei.itb.ac.id
-Muhammad Fiqri
+Edbert Edyson Gunawan - 13522083@std.stei.itb.ac.id <br>
+Muhammad Fiqri 
