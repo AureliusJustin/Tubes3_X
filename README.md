@@ -31,7 +31,7 @@ Terdapat beberapa fitur yang dapat digunakan pada project ini, antara lain:
 
 1. Clone Repository
    ```sh
-   git clone https://github.com/AureliusJustin/Algeo01-22020.git](https://github.com/AureliusJustin/Tubes3_X.git
+   git clone https://github.com/AureliusJustin/Algeo01-22020.git
    ```
 2. Open folder "Tubes_X" in the terminal, then run (F5 or Fn + F5)
 
