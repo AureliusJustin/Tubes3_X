@@ -118,20 +118,6 @@ namespace Tubes3_X
                 Biodata baru = db.getBiodataFromName(namaAlay);
                 
 
-                lnama.Content = baru.nama;
-                ltempatlahir.Content = baru.tempatLahir;
-                ltanggallahir.Content = baru.tanggalLahir;
-                lkelamin.Content = baru.kelamin;
-                lgoldar.Content = baru.goldar;
-                lalamat.Content = baru.alamat;
-                lagama.Content = baru.agama;
-                lstatus.Content = baru.statusPerkawinan;
-                lpekerjaan.Content = baru.pekerjaan;
-                lkewarganegaraan.Content = baru.kewarganegaraan;
-
-                Console.WriteLine(baru.nama);
-                Console.WriteLine(baru.nik);
-
                 // CARA NAMPILIN PERSENTASE
                 float persen = ((float)(30 - this.algo.hammingDistanceScore));
                 Console.WriteLine("Akurasi: " + (persen/ 30.0 * 100.0) + "%"); 
@@ -141,11 +127,24 @@ namespace Tubes3_X
 
                 if (persen/ 30.0 * 100.0 >= 50)
                 {
-                CitraHasil.Source = new BitmapImage(new Uri(projectDirectory + "/" + result));
+                    CitraHasil.Source = new BitmapImage(new Uri(projectDirectory + "/" + result));
+                    lnama.Content = baru.nama;
+                    ltempatlahir.Content = baru.tempatLahir;
+                    ltanggallahir.Content = baru.tanggalLahir;
+                    lkelamin.Content = baru.kelamin;
+                    lgoldar.Content = baru.goldar;
+                    lalamat.Content = baru.alamat;
+                    lagama.Content = baru.agama;
+                    lstatus.Content = baru.statusPerkawinan;
+                    lpekerjaan.Content = baru.pekerjaan;
+                    lkewarganegaraan.Content = baru.kewarganegaraan;
+
+                    Console.WriteLine(baru.nama);
+                    Console.WriteLine(baru.nik);
                 }
                 else
                 {
-                CitraHasil.Source = new BitmapImage(new Uri(projectDirectory + "/Images/notfound.jpg"));
+                    CitraHasil.Source = new BitmapImage(new Uri(projectDirectory + "/Images/notfound.jpg"));
                 }
                 lkecocokan.Content = (persen/ 30.0 * 100.0).ToString() + "%";
             }
