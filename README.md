@@ -33,7 +33,10 @@ Terdapat beberapa fitur yang dapat digunakan pada project ini, antara lain:
    ```sh
    git clone https://github.com/AureliusJustin/Algeo01-22020.git
    ```
-2. Open folder "Tubes_X" in the terminal, then run (F5 or Fn + F5)
+2. Setelah database dipastikan nyala, jalankan program GUI dengan menekan tombol play pada visual studio code
+3. Lakukan preprocessing dan enkripsi terhadap file .sql dengan menjalankan program pada folder Database.
+4. Nyalakan database dengan perintah “docker compose build”, lalu “docker compose up”
+5. Open folder "Tubes_X" in the terminal, then run (F5 or Fn + F5)
 
 ## Contact
 
