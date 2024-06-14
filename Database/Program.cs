@@ -83,11 +83,11 @@ namespace Database
             }
 
             // change the DDL
-            fileContent = fileContent.Replace("`NIK` varchar(16) NOT NULL,", "`NIK` varchar(30) NOT NULL,");
-            fileContent = fileContent.Replace("`tanggal_lahir` date DEFAULT NULL,", "`tanggal_lahir` varchar(50) DEFAULT NULL,");
-            fileContent = fileContent.Replace("`golongan_darah` varchar(5) DEFAULT NULL,", "`golongan_darah` varchar(30) DEFAULT NULL,");
-            fileContent = fileContent.Replace("`status_perkawinan` enum('Belum Menikah','Menikah','Cerai') DEFAULT NULL,", "`status_perkawinan` varchar(32) DEFAULT NULL,");
-            fileContent = fileContent.Replace("`jenis_kelamin` enum('Laki-Laki','Perempuan') DEFAULT NULL,", "`jenis_kelamin` varchar(30) DEFAULT NULL,");
+            fileContent = fileContent.Replace("`NIK` varchar(16) NOT NULL,", "`NIK` varchar(100) NOT NULL,");
+            fileContent = fileContent.Replace("`tanggal_lahir` date DEFAULT NULL,", "`tanggal_lahir` varchar(100) DEFAULT NULL,");
+            fileContent = fileContent.Replace("`golongan_darah` varchar(5) DEFAULT NULL,", "`golongan_darah` varchar(100) DEFAULT NULL,");
+            fileContent = fileContent.Replace("`status_perkawinan` enum('Belum Menikah','Menikah','Cerai') DEFAULT NULL,", "`status_perkawinan` varchar(100) DEFAULT NULL,");
+            fileContent = fileContent.Replace("`jenis_kelamin` enum('Laki-Laki','Perempuan') DEFAULT NULL,", "`jenis_kelamin` varchar(100) DEFAULT NULL,");
 
             // Write the modified content to the new SQL file
             File.WriteAllText(outputFilePath, fileContent);

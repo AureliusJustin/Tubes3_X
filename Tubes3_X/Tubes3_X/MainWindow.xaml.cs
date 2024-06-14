@@ -95,7 +95,7 @@ namespace Tubes3_X
             //Memulai Stopwatch
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            string result = this.algo.AlgoMain(this.inputFilePath, "BM");
+            string result = this.algo.AlgoMain(this.inputFilePath, this.inputAlgo);
 
             //Mengakhiri Stopwatch
             watch.Stop();

@@ -38,6 +38,12 @@ namespace Tubes3_X
                     case 'o':
                         charPattern += "0";
                         break;
+                    case 'z':
+                        charPattern += "2";
+                        break;
+                    // R --> 12
+                    // B --> 8 --> 13
+                    
                 }
 
                 charPattern += "]?";
